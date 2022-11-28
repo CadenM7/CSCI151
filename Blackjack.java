@@ -13,8 +13,8 @@ public class Blackjack {
     private int size;
 
 
-    public Blackjack(int size) {
-        this.size = size;
+    public Blackjack() {
+        
     }
 
     public String toString() {
