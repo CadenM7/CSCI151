@@ -1,44 +1,47 @@
 package Game;
 
-public class BlackjackStack<B> implements Stack<B> {
+import java.util.Random;
+
+public class BlackjackStack<D> implements Stack<D> {
 
     private int top;
 
-    private B[] deck;
+    private D[] deck;
 
-    public BlackjackStack(){this(2);}
+    public BlackjackStack(){this(52);}
+
 
     public BlackjackStack(int size) {
         top = 0;
-        deck = (B[])(new Object[size]);
+        deck = (D[])(new Object[size]);
     }
 
     @Override
     public int size() {return top;}
 
     @Override
-    public B pop() {
+    public D pop() {
         emptyCheck();
         top--;
-        B temp = deck[top];
+        D temp = deck[top];
         return temp;
     }
     @Override
-    public B peek() {
+    public D peek() {
         emptyCheck();
         return deck[top - 1];
     }
 
     @Override
-    public void push(B b) {
+    public void push(D d) {
         resize();
-        deck[top] = b;
+        deck[top] = d;
         top++;
     }
 
     private void resize() {
         if (top == deck.length) {
-            B[] deck2 = (B[])(new Object[deck.length * 2]);
+            D[] deck2 = (D[])(new Object[deck.length * 2]);
             for (int i = 0; i < deck.length; i++) {
                 deck2[i] = deck[i];
             }
@@ -59,4 +62,14 @@ public class BlackjackStack<B> implements Stack<B> {
     public int capacity() {
         return deck.length;
     }
+
+    public void shuffle() {
+        D[] tempdeck = (D[])(new Object[deck.length]);
+        for (int i = 0; i < deck.length; i++) {
+            tempdeck[i] = deck[i];
+            push(deck[i]);
+        }
+    }
 }
+
+

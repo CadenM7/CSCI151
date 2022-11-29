@@ -12,28 +12,11 @@ public class Blackjack {
 
     private boolean won;
 
-    private CardValues values;
-
-    private CardRandomizer shuffle;
-
     private int size;
 
 
     public Blackjack(int size) {
         this.size = size;
-
-        if (player == 21) {
-            won = true;
-        }
-        if (dealer == 21) {
-            lose = true;
-        } else if (player > 21 || dealer > 21) {
-            draw = true;
-        } else if (player > 21 && dealer < 21) {
-            lose = true;
-        } else if (player < 21 && dealer > 21) {
-            won = true;
-        }
     }
 
     public String toString() {
@@ -42,6 +25,12 @@ public class Blackjack {
     }
 
     public void dealer() {
+        if(dealer == 17) {
+            //The dealer has to stand
+        }
+        if(dealer <= 16){
+            //The dealer has to hit
+        }
 
     }
 }
