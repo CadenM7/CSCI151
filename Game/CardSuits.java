@@ -1,4 +1,4 @@
-package Game;
+package Blackjack.Game;
 
 public enum CardSuits {
     HEARTS,

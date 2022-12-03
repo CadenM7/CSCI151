@@ -7,11 +7,11 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Blackjack.GUI.BlackjackController">
    <center>
-      <VBox alignment="CENTER" BorderPane.alignment="CENTER">
+      <VBox fx:id="pane" alignment="CENTER" BorderPane.alignment="CENTER">
          <children>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
@@ -21,10 +21,13 @@
    <left>
       <VBox alignment="CENTER" BorderPane.alignment="CENTER">
          <children>
-            <Label text="Dealer" />
-            <TextField alignment="CENTER" />
-            <Label text="Hand" textAlignment="CENTER" />
-            <TextField />
+            <Label alignment="CENTER" text="Dealer" />
+            <TextField fx:id="dealerScore" alignment="CENTER" disable="true">
+               <VBox.margin>
+                  <Insets bottom="50.0" />
+               </VBox.margin></TextField>
+            <Label alignment="CENTER" text="Hand" textAlignment="CENTER" />
+            <TextField fx:id="playerScore" alignment="CENTER" disable="true" />
          </children>
          <opaqueInsets>
             <Insets />
@@ -34,17 +37,22 @@
    <bottom>
       <HBox alignment="CENTER" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" text="Hit" />
-            <Button mnemonicParsing="false" text="Stand" />
-            <Button mnemonicParsing="false" text="New Hand" />
+            <Button fx:id="hit" mnemonicParsing="false" text="Hit">
+               <HBox.margin>
+                  <Insets right="100.0" />
+               </HBox.margin></Button>
+            <Button fx:id="stand" mnemonicParsing="false" text="Stand" />
          </children>
       </HBox>
    </bottom>
    <right>
-      <VBox alignment="CENTER" BorderPane.alignment="CENTER">
-         <children>
-            <Button mnemonicParsing="false" text="Shuffle Deck" />
-         </children>
-      </VBox>
+      <VBox alignment="CENTER" BorderPane.alignment="CENTER" />
    </right>
+   <top>
+      <Label fx:id="label" alignment="CENTER" text="Blackjack" textAlignment="CENTER" BorderPane.alignment="CENTER">
+         <font>
+            <Font size="28.0" />
+         </font>
+      </Label>
+   </top>
 </BorderPane>

@@ -1,38 +1,41 @@
-package Game;
+package Blackjack.Game;
 
 import java.util.Random;
 
-public class BlackjackStack<D> implements Stack<D> {
+public class BlackjackStack {
 
     private int top;
 
-    private D[] deck;
+    private Card[] deck;
 
     public BlackjackStack(){this(52);}
 
     public BlackjackStack(int size) {
         top = 0;
-        deck = (D[])(new Object[size]);
+        deck = new Card[size];
+
+        for(CardSuits s: CardSuits.values()) {
+            for(CardValues v: CardValues.values()) {
+                Card card = new Card(v,s);
+                push(card);
+            }
+        }
     }
 
-    @Override
     public int size() {return top;}
 
-    @Override
-    public D pop() {
+    public Card pop() {
         emptyCheck();
         top--;
-        D temp = deck[top];
+        Card temp = deck[top];
         return temp;
     }
-    @Override
-    public D peek() {
+    public Card peek() {
         emptyCheck();
         return deck[top - 1];
     }
 
-    @Override
-    public void push(D d) {
+    public void push(Card d) {
         resize();
         deck[top] = d;
         top++;
@@ -40,7 +43,7 @@ public class BlackjackStack<D> implements Stack<D> {
 
     private void resize() {
         if (top == deck.length) {
-            D[] deck2 = (D[])(new Object[deck.length * 2]);
+            Card[] deck2 = new Card[deck.length * 2];
             for (int i = 0; i < deck.length; i++) {
                 deck2[i] = deck[i];
             }
@@ -48,7 +51,6 @@ public class BlackjackStack<D> implements Stack<D> {
         }
     }
 
-    @Override
     public String toString() {
         String s = "";
         for (int i = 0; i < top; i++) {
@@ -57,16 +59,24 @@ public class BlackjackStack<D> implements Stack<D> {
         return s;
     }
 
-    @Override
     public int capacity() {
         return deck.length;
+    }
+
+    public void emptyCheck() {
+        if (isEmpty()) {
+            throw new IllegalStateException("Cannot access from empty stack");
+        }
+    }
+    public boolean isEmpty() {
+        return size() == 0;
     }
 
     public void shuffle() {
         for (int i = 0; i < size(); i++) {
             Random r = new Random();
             int index = r.ints(i, size()).findFirst().getAsInt();
-            D temp = deck[i];
+            Card temp = deck[i];
             deck[i] = deck[index];
             deck[index] = temp;
         }

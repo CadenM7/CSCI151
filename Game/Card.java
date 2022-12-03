@@ -1,4 +1,4 @@
-package Game;
+package Blackjack.Game;
 
 public class Card {
     private CardSuits suit;
@@ -8,16 +8,16 @@ public class Card {
         this.values = values;
         this.suit = suit;
     }
-    public CardSuits getSuit() {
-        return suit;
+    public String getSuit() {
+        return suit.name();
     }
 
     public void setSuit(CardSuits suit) {
         this.suit = suit;
     }
 
-    public CardValues getCardValues() {
-        return values;
+    public int getCardValues() {
+        return values.getValue();
     }
 
     public void setCardValue(CardValues cardValue)
@@ -31,4 +31,8 @@ public class Card {
         }
         return false;
     }
+    public String ab() {
+        return "" + values.getValue() + suit.name().charAt(0);
+    }
+
 }
